@@ -1,0 +1,39 @@
+html, body, h1, div, nav, a {
+  margin: 0px;
+  padding: 0px;
+}
+
+#sky {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#80ccff, #ccebff);
+}
+
+nav {
+  position: fixed;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  width: 100%;
+}
+
+#icons a, #about a {
+  color: white;
+  font-size: 230%;
+  padding-left: 15px;
+}
+
+#icons a:last-of-type {
+  padding-right: 15px;
+}
+
+h1 {
+  color: white;
+  font-weight: lighter;
+  font-family: 'Pacifico', cursive;
+
+  padding: 5px 15px;
+}
