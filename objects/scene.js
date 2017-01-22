@@ -1,6 +1,7 @@
 import * as THREE from '../three.js';
 import addLights from './light';
 import addSky from './sky';
+import addBalloon from './balloon';
 
 const setupScene = () => {
   const scene = new THREE.Scene();
@@ -16,7 +17,7 @@ const setupScene = () => {
     1,
     10000
   );
-	camera.position.z = 800;
+	camera.position.z = 750;
 
   // renderer
   const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -37,8 +38,7 @@ const setupScene = () => {
 
   addLights(scene);
   addSky(scene);
-
-  console.log(scene);
+  addBalloon(scene);
 
   renderer.render(scene, camera);
 };
