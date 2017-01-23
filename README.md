@@ -25,8 +25,8 @@ This game will consist of a single screen with nav links to the Github repo, my 
 
 This project will be implemented with the following technologies:
 
-- Vanilla JavaScript and `jquery` for overall structure and game logic
-- `Three.js` with `WebGL` for DOM manipulation and rendering,
+- Vanilla JavaScript for overall structure and game logic
+- `Three.js` with `WebGL` for DOM manipulation and rendering
 
 
 ### Implementation Timeline
