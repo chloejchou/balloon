@@ -70,7 +70,6 @@ const asteroid = () => {
   });
 
   const sphere = new THREE.Mesh(geometry, material);
-  sphere.receiveShadow = true;
   sphere.castShadow = true;
 
   return sphere;
@@ -104,6 +103,102 @@ const addSpace = () => {
 };
 
 
+// ADD ROCKET
+// ------------------------------------------------------------------
+let rocketMesh;
+
+const rocket = () => {
+  const mesh = new THREE.Object3D();
+
+  // TIP
+  // radius, height, radial segments
+  const tipGeometry = new THREE.ConeGeometry(7, 10, 20);
+  const tipMaterial = new THREE.MeshPhongMaterial({
+    color: 0xff0000,
+    opacity: .95
+  });
+  const tip = new THREE.Mesh(tipGeometry, tipMaterial);
+  tip.castShadow = true;
+  mesh.add(tip);
+
+  // BODY
+  const bodyMaterial = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    opacity: .95
+  });
+
+  // TOP BODY
+  // rad top, rad bottom, height, radial segments
+  const topBodyGeometry = new THREE.CylinderGeometry(7, 9, 11, 20);
+  const topBody = new THREE.Mesh(topBodyGeometry, bodyMaterial);
+  topBody.position.y = -10.5;
+  mesh.add(topBody);
+
+  // BOTTOM BODY
+  const bottomBodyGeometry = new THREE.CylinderGeometry(9, 7, 11, 20);
+  const bottomBody = new THREE.Mesh(bottomBodyGeometry, bodyMaterial);
+  bottomBody.position.y = -21.5;
+  mesh.add(bottomBody);
+
+  // WINGS
+  const wingGeometry = new THREE.BoxGeometry(5, 10, 1);
+  const wingMaterial = new THREE.MeshPhongMaterial({
+    color: 0xffffff,
+    opacity: .95
+  });
+
+  // TOP WING
+  // width, height, depth
+  const topWing = new THREE.Mesh(wingGeometry, wingMaterial);
+  topWing.position.x = -10;
+  topWing.position.y = -25;
+  topWing.rotation.z = -Math.PI / 2 - 49.7;
+  mesh.add(topWing);
+
+  // BOTTOM WING
+  const bottomWing = new THREE.Mesh(wingGeometry, wingMaterial);
+  bottomWing.position.x = 10;
+  bottomWing.position.y = -25;
+  bottomWing.rotation.z = -Math.PI / 2 + 49.7;
+  mesh.add(bottomWing);
+
+  // LEFT WING
+  const leftWing = new THREE.Mesh(wingGeometry, wingMaterial);
+  leftWing.position.z = 10;
+  leftWing.position.y = -25;
+  leftWing.rotation.y = Math.PI / 2;
+  leftWing.rotation.x = -Math.PI / 2 - 49.5;
+  mesh.add(leftWing);
+
+  // TAIL
+  const tailGeometry = new THREE.CylinderGeometry(7, 4, 4, 20);
+  const tailMaterial = new THREE.MeshPhongMaterial({
+    color: 0xff0000,
+    opacity: .95
+  });
+  const tail = new THREE.Mesh(tailGeometry, tailMaterial);
+  tail.position.y = -29;
+  mesh.add(tail);
+
+  // FIRE
+  const fireGeometry = new THREE.BoxGeometry(4, 5, 5);
+  const fireMaterial = new THREE.MeshPhongMaterial({
+    color: 0xff0000,
+    opacity: .95
+  });
+  const fire = new THREE.Mesh(fireGeometry, fireMaterial);
+  fire.position.y = -33;
+  mesh.add(fire);
+
+  return mesh;
+};
+
+const addRocket = () => {
+  rocketMesh = rocket();
+  rocketMesh.rotation.z = -Math.PI / 2;
+  scene.add(rocketMesh);
+};
+
 // LOOPS & RENDERING
 // ------------------------------------------------------------------
 const loop = () => {
@@ -121,6 +216,7 @@ const initialize = () => {
   setupLights();
   addMoon();
   addSpace();
+  addRocket();
 
   loop();
 };
