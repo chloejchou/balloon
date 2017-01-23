@@ -2,7 +2,7 @@
 
 ### Background
 
-Orbit follows the journey of a rocket that is orbiting the moon. The survival of the rocket, whose position is controlled by the user's mouse, depends on the avoidance of oncoming asteroids.
+Orbit follows the journey of a rocket that is circling the moon. The survival of the rocket, whose position is controlled by the user's mouse, depends on the avoidance of oncoming asteroids.
 
 ### Functionality & MVP  
 
@@ -17,7 +17,7 @@ This project will include:
 
 ### Wireframes
 
-This game will consist of a single screen with nav links to the Github repo, my LinkedIn, and the instructional modal. The screen will be set around a rotating planet, with the rocket positioned near the center of the screen. Oncoming asteroids will enter from the left. When the user hits an asteroid, the score will appear on the screen along with a Play Again button.
+This game will consist of a single screen with nav links to the Github repo, my LinkedIn, and the instructional modal. The screen will be set around a rotating planet, with the rocket positioned near the center of the screen. Oncoming asteroids will enter from the right. When the user hits an asteroid, the score will appear on the screen along with a Play Again button.
 
 ![wireframes](images/wireframe.png)
 
