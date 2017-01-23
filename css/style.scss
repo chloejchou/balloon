@@ -20,7 +20,7 @@ nav {
   width: 100%;
 }
 
-#icons a, #about a {
+#icons a {
   color: white;
   font-size: 230%;
   padding-left: 15px;
@@ -36,4 +36,16 @@ h1 {
   font-family: 'Pacifico', cursive;
 
   padding: 5px 15px;
+}
+
+#pause {
+  position: absolute;
+  z-index: 1;
+  bottom: 15px;
+  left: 50%;
+  right: 50%;
+  color: black;
+  font-size: 250%;
+  border: none;
+  background: transparent;
 }

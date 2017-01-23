@@ -51,9 +51,4 @@ const sky = () => {
   return skyMesh;
 };
 
-const addSky = (scene) => {
-  const skyMesh = sky();
-  scene.add(skyMesh);
-};
-
-export default addSky;
+export default sky;
