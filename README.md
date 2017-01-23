@@ -29,13 +29,17 @@ This project will be implemented with the following technologies:
 - `Three.js` with `WebGL` for DOM manipulation and rendering,
 - Webpack to bundle and serve up the various scripts.
 
-In addition to the webpack entry file, there will be 5 scripts involved in this project:
+In addition to the webpack entry file, there will be 6 scripts involved in this project:
 
-`lights.js`: This script will manage the lighting of the scene.
+`lighting.js`: This script will manage the lighting of the scene.
+
+`moon.js`: This script will create the moon object;
 
 `rocket.js`: This script will create the rocket object.
 
-`asteroids.js`: This script will create an asteroid, which will be added to the scene in the entry file.
+`asteroid.js`: This script will create an asteroid.
+
+`sky.js`: This script will create the sky with randomly dotted asteroids.
 
 `game.js`: This script will house the game logic.
 
