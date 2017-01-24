@@ -48,44 +48,47 @@ const moon = () => {
 
 const addMoon = () => {
   moonMesh = moon();
-  moonMesh.position.y = -350;
+  moonMesh.position.y = -375;
   scene.add(moonMesh);
 };
 
 
 // ADD ASTEROIDS IN SPACE
 // ------------------------------------------------------------------
+
 let spaceMesh;
+let numAsteroids = 15;
 
-const asteroid = () => {
-  const geometry = new THREE.IcosahedronGeometry(20, 1);
-  const material = new THREE.MeshPhongMaterial({
-    color: 0xbda0cb,
-    opacity: .95,
-    shading: THREE.FlatShading
-  });
+class Asteroid {
+  constructor() {
+    const geometry = new THREE.IcosahedronGeometry(20, 1);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0xbda0cb,
+      opacity: .95,
+      shading: THREE.FlatShading
+    });
 
-  const sphere = new THREE.Mesh(geometry, material);
+    const sphere = new THREE.Mesh(geometry, material);
 
-  return sphere;
-};
+    this.sphere = sphere;
+  }
+}
 
 const space = () => {
   const mesh = new THREE.Object3D();
   // 2PI for a full rotation
-  const angleDistance = (Math.PI * 2) / 25;
-  for (let i = 0; i < 25; i++) {
+  const angleDistance = (Math.PI * 2) / numAsteroids;
+  for (let i = 0; i < numAsteroids; i++) {
     const angle = angleDistance * i;
-    const distance = 300 + (Math.random() * 150);
-    const newAsteroid = asteroid();
-    newAsteroid.position.x = Math.cos(angle) * distance;
-    newAsteroid.position.y = Math.sin(angle) * distance;
-    newAsteroid.position.z = 0;
+    const distance = 260 + (Math.random() * 150);
+    const newAsteroid = new Asteroid();
+    newAsteroid.sphere.position.x = Math.cos(angle) * distance;
+    newAsteroid.sphere.position.y = Math.sin(angle) * distance;
+    newAsteroid.sphere.position.z = Math.random() * 100;
 
     const size = Math.random();
-    newAsteroid.scale.set(size, size, size);
-
-    mesh.add(newAsteroid);
+    newAsteroid.sphere.scale.set(size, size, size);
+    mesh.add(newAsteroid.sphere);
   }
 
   return mesh;
@@ -202,6 +205,8 @@ const rocket = () => {
 const addRocket = () => {
   rocketMesh = rocket();
   rocketMesh.rotation.z = -Math.PI / 2;
+  rocketMesh.position.x += 25;
+  rocketMesh.position.z = 50;
   scene.add(rocketMesh);
 };
 
@@ -209,14 +214,15 @@ const addRocket = () => {
 // HELPER METHODS
 // ------------------------------------------------------------------
 
-let mouseX = 0;
 let mouseY = 0;
+let mouseX = 0;
 
 const updateRocketPos = () => {
-  const xPos = norm(mouseX, -1, 1, -150, 150);
-  const yPos = norm(mouseY, -1, 1, -35, 85);
-  rocketMesh.position.x = xPos;
-  rocketMesh.position.y = yPos;
+  const xPos = norm(mouseX, -1, 1, -130, 130);
+  const yPos = norm(mouseY, -1, 1, -50, 70);
+  rocketMesh.position.x += (xPos - rocketMesh.position.x) * .1;
+  rocketMesh.position.y += (yPos - rocketMesh.position.y) * .1;
+  rocketMesh.rotation.z += (rocketMesh.position.y - yPos) * .0008;
 };
 
 const norm = (v, vmin, vmax, tmin, tmax) => {
@@ -230,8 +236,7 @@ const norm = (v, vmin, vmax, tmin, tmax) => {
 const loop = () => {
   moonMesh.rotation.z += .007;
   spaceMesh.rotation.z += .007;
-  rocketMesh.rotation.x += .01;
-
+  rocketMesh.rotation.x += .015;
   updateRocketPos();
 
   renderer.render(scene, camera);
@@ -249,8 +254,8 @@ const initialize = () => {
   addSpace();
   addRocket();
 
+  // rocket follows mouse
   document.addEventListener('mousemove', event => {
-    // mouseX and mouseY are between -1 and 1
     mouseX = -1 + (event.clientX / window.innerWidth) * 2;
     mouseY = 1 - (event.clientY / window.innerHeight) * 2;
   });
@@ -261,4 +266,18 @@ const initialize = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
+
+  // EVENTS
+  // ------------------------------------------------------------------
+  $("#num-asteroids").on('change', event => {
+    numAsteroids = parseInt(event.target.value);
+    scene.remove(spaceMesh);
+    addSpace();
+  });
+
+  $("#camera-z").on('change', event => {
+    camera.position.z = parseInt(event.target.value);
+  });
+
+
 });
