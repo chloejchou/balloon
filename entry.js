@@ -8,7 +8,7 @@ const setupScene = () => {
   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
   camera.position.x = 0;
   camera.position.y = 0;
-  camera.position.z = 200;
+  camera.position.z = 300;
 
   renderer = new THREE.WebGLRenderer({ alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -80,7 +80,7 @@ const space = () => {
   const angleDistance = (Math.PI * 2) / numAsteroids;
   for (let i = 0; i < numAsteroids; i++) {
     const angle = angleDistance * i;
-    const distance = 260 + (Math.random() * 150);
+    const distance = 325 + (Math.random() * 270);
     const newAsteroid = new Asteroid();
     newAsteroid.sphere.position.x = Math.cos(angle) * distance;
     newAsteroid.sphere.position.y = Math.sin(angle) * distance;
@@ -96,7 +96,7 @@ const space = () => {
 
 const addSpace = () => {
   spaceMesh = space();
-  spaceMesh.position.y = -300;
+  spaceMesh.position.y = -375;
   scene.add(spaceMesh);
 };
 
@@ -205,8 +205,6 @@ const rocket = () => {
 const addRocket = () => {
   rocketMesh = rocket();
   rocketMesh.rotation.z = -Math.PI / 2;
-  rocketMesh.position.x += 25;
-  rocketMesh.position.z = 50;
   scene.add(rocketMesh);
 };
 
@@ -214,6 +212,8 @@ const addRocket = () => {
 // HELPER METHODS
 // ------------------------------------------------------------------
 
+let speed = .007;
+let rocketRotationSpeed = .015;
 let mouseY = 0;
 let mouseX = 0;
 
@@ -234,9 +234,9 @@ const norm = (v, vmin, vmax, tmin, tmax) => {
 };
 
 const loop = () => {
-  moonMesh.rotation.z += .007;
-  spaceMesh.rotation.z += .007;
-  rocketMesh.rotation.x += .015;
+  moonMesh.rotation.z += speed;
+  spaceMesh.rotation.z += speed;
+  rocketMesh.rotation.x += rocketRotationSpeed;
   updateRocketPos();
 
   renderer.render(scene, camera);
@@ -276,7 +276,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   $("#camera-z").on('change', event => {
-    camera.position.z = parseInt(event.target.value);
+    if (camera.position.z === 0) {
+      camera.position.y = parseInt(event.target.value);
+    } else {
+      camera.position.z = parseInt(event.target.value);
+    }
+  });
+
+  $("#scene-rotation-speed").on('change', event => {
+    speed = parseFloat(event.target.value);
+  });
+
+  $("#rocket-rotation-speed").on('change', event => {
+    rocketRotationSpeed = parseFloat(event.target.value);
+  });
+
+  $("#pov").on('change', event => {
+    if (event.target.value === "1") {
+      camera.position.z = 0;
+      camera.position.y = 300;
+      camera.rotation.x = (Math.PI / -2);
+    } else {
+      camera.position.z = 300;
+      camera.position.y = 0;
+      camera.rotation.x = 0;
+    }
   });
 
 
