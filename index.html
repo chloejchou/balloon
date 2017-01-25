@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Orbit</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Alegreya+Sans+SC:300" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href="./css/style.css" rel="stylesheet"/>
     <!-- Downloaded the minified library and stored in file three.js -->
@@ -14,6 +14,27 @@
   <body>
     <nav>
       <h1>Orbit</h1>
+      <div id="sliders">
+        <label for="num-asteroids">Number of Asteroids</label><br />
+        <input id="num-asteroids" type="range" min="5" max="150" value="15"/>
+        <br /><br />
+        <label for="camera-z">Zoom</label><br />
+        <input id="camera-z" type="range" min="200" max="500" value="300"/>
+        <br /><br />
+        <label for="scene-rotation-speed">Rocket Speed</label><br />
+        <input id="scene-rotation-speed" type="range" min=".005" max=".05" value=".007" step=".001">
+        <br /><br />
+        <label for="rocket-rotation-speed">Rocket Rotation</label><br />
+        <input id="rocket-rotation-speed" type="range" min=".01" max=".1" value=".015" step=".005">
+        <br /><br />
+        <label for="pov">Point of View</label><br />
+        <input id="pov" type="range" min="0" max="1" value="0">
+        <br /><br />
+        <label for="asteroid-color">Asteroid Color</label><br />
+        <input id="asteroid-color-red" type="range" min="0" max="255" value="189">
+        <input id="asteroid-color-green" type="range" min="0" max="255" value="160">
+        <input id="asteroid-color-blue" type="range" min="0" max="255" value="203">
+      </div>
       <div id="icons">
         <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
         <a href="https://www.linkedin.com/in/chloe-chou"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
@@ -21,24 +42,5 @@
       </div>
     </nav>
     <div id="sky"></div>
-    <footer>
-      <label for="num-asteroids">Number of Asteroids</label>
-      <input id="num-asteroids" type="range" min="5" max="100" value="15"/>
-
-      <label for="camera-z">Zoom</label>
-      <input id="camera-z" type="range" min="200" max="500" value="300"/>
-
-      <label for="scene-rotation-speed">Rocket Speed</label>
-      <input id="scene-rotation-speed" type="range" min=".005" max=".05" value=".007" step=".001">
-
-      <label for="rocket-rotation-speed">Rocket Rotation</label>
-      <input id="rocket-rotation-speed" type="range" min=".01" max=".1" value=".015" step=".005">
-
-      <label for="pov">Point of View</label>
-      <input id="pov" type="range" min="0" max="1" value="0">
-    </footer>
   </body>
 </html>
-
-<!-- <label for="camera-angle">Camera Angle</label>
-<input id="camera-angle" type="range" min="-200" max="200" value="0"> -->

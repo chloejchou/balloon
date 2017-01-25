@@ -6,7 +6,7 @@ const setupScene = () => {
   scene = new THREE.Scene();
 
   camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-  camera.position.x = 0;
+  camera.position.x = -55;
   camera.position.y = 0;
   camera.position.z = 300;
 
@@ -58,12 +58,16 @@ const addMoon = () => {
 
 let spaceMesh;
 let numAsteroids = 15;
+// 0xbda0cb
+let asteroidRed = "189";
+let asteroidGreen = "160";
+let asteroidBlue = "203";
 
 class Asteroid {
   constructor() {
     const geometry = new THREE.IcosahedronGeometry(20, 1);
     const material = new THREE.MeshPhongMaterial({
-      color: 0xbda0cb,
+      color: `rgb(${asteroidRed}, ${asteroidGreen}, ${asteroidBlue})`,
       opacity: .95,
       shading: THREE.FlatShading
     });
@@ -296,12 +300,34 @@ document.addEventListener('DOMContentLoaded', () => {
       camera.position.z = 0;
       camera.position.y = 300;
       camera.rotation.x = (Math.PI / -2);
+      $("#camera-z").val("300");
     } else {
       camera.position.z = 300;
       camera.position.y = 0;
       camera.rotation.x = 0;
+      $("#camera-z").val("300");
     }
   });
 
+  $("#asteroid-color-red").on('change', event => {
+    asteroidRed = event.target.value;
+    spaceMesh.children.forEach(asteroid => {
+      asteroid.material.color = new THREE.Color(`rgb(${asteroidRed},${asteroidGreen},${asteroidBlue})`);
+    });
+  });
+
+  $("#asteroid-color-green").on('change', event => {
+    asteroidGreen = event.target.value;
+    spaceMesh.children.forEach(asteroid => {
+      asteroid.material.color = new THREE.Color(`rgb(${asteroidRed},${asteroidGreen},${asteroidBlue})`);
+    });
+  });
+
+  $("#asteroid-color-blue").on('change', event => {
+    asteroidBlue = event.target.value;
+    spaceMesh.children.forEach(asteroid => {
+      asteroid.material.color = new THREE.Color(`rgb(${asteroidRed},${asteroidGreen},${asteroidBlue})`);
+    });
+  });
 
 });
