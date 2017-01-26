@@ -16,7 +16,7 @@ This project was implemented with JavaScript, jQuery, and Three.js.
 
 ### Objects
 
-A `PerspectiveCamera` is initially set up to face a rocket orbiting the moon, which is surrounded by asteroids. The rocket position is static, while the moon and asteroids rotate steadily along the z-axis to give the illusion of a moving rocket.
+A `PerspectiveCamera` is initially set up to face a rocket orbiting the moon, which is surrounded by asteroids. The rocket's position is static, while the moon and asteroids rotate steadily along the z-axis to give the illusion of a moving rocket.
 
 #### Moon
 
@@ -46,14 +46,10 @@ for (let i = 0; i < numAsteroids; i++) {
 
 #### Rocket
 
-The rocket follows the user's mouse movement and is made up of 9 different objects: 1 cone, 3 cylinders, and 5 boxes. The object spins along the x-axis.
-
-<p align="center" height="100%" width="auto">
-  <img src="media/rocket.png" alt="rocket">
-</p>
+The rocket follows the user's mouse movement and is made up of 9 different objects: 1 cone, 3 cylinders, and 5 boxes. The object rotates along the x-axis.
 
 ### Future Directions
-* I plan on animating smoke puffs coming out from the rear of the rocket. Please see this [example][example].
+* I plan on animating rocket exhaust. Here is an [example][example].
 
 [example]: https://codepen.io/murdoc/pen/aOPaqZ
 
