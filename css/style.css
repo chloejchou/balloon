@@ -24,6 +24,7 @@ body {
 
 #sky {
   position: absolute;
+  left: 70px;
   height: 100%;
   background-image: url("https://source.unsplash.com/aI1tDC8PaLM");
   background-size: cover;
@@ -34,20 +35,21 @@ nav {
   position: absolute;
   background-color: black;
   z-index: 1;
-  width: 200px;
+  width: 180px;
   height: 100%;
-  box-shadow: 3px 3px 3px #000000;
+  box-shadow: 3px 0px 3px #000000;
+}
+
+#sliders {
+  text-align: center;
 }
 
 #sliders input {
-  padding-left: 20px;
 }
 
 label {
   font-family: 'Alegreya Sans SC', sans-serif;
-  letter-spacing: .5px;
   font-size: 100%;
-  padding-left: 20px;
 }
 
 h1 {
@@ -64,7 +66,7 @@ h1 {
   position: absolute;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   bottom: 15px;
 }
@@ -73,10 +75,24 @@ h1 {
   font-size: 230%;
 }
 
+#icons a:first-of-type {
+  padding-right: 30px;
+}
 
+#icons a:hover {
+  color: #966fa9;
+}
 
+#reset {
+  font-family: 'Pacifico';
+  font-size: 150%;
+  margin: 10px 0;
+}
 
-
+#reset:hover {
+  cursor: pointer;
+  color: #966fa9;
+}
 
 /* bootstrap for range inputs */
 input[type=range] {

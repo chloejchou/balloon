@@ -1,42 +1,60 @@
 ## Orbit
 
-### Background
+[Orbit Live][orbit]
 
-Orbit follows the journey of a rocket that is circling the moon. The survival of the rocket, whose position is controlled by the user's mouse, depends on the avoidance of oncoming asteroids.
+[orbit]: www.chloejchou.github.io/orbit
 
-### Functionality & MVP  
+Orbit follows the journey of a rocket that is circling the moon. The user is able to toggle the following environmental factors:
 
-With this app, users will be able to:
+* asteroid count
+* position on the z-axis
+* rocket speed & rotation
+* the camera's point of view
+* asteroid & moon colors
 
-- [ ] Manipulate rocket position with mouse movement
+This project was implemented with JavaScript, jQuery, and Three.js.
 
-This project will include:
+### Objects
 
-- [ ] A production Readme
-- [ ] A modal describing the rules of the game
+A `PerspectiveCamera` is initially set up to face a rocket orbiting the moon, which is surrounded by asteroids. The rocket position is static, while the moon and asteroids rotate steadily along the z-axis to give the illusion of a moving rocket.
 
-### Wireframes
+#### Moon
 
-This game will consist of a single screen with nav links to the Github repo, my LinkedIn, and the instructional modal. The screen will be set around a rotating planet, with the rocket positioned near the center of the screen. Oncoming asteroids will enter from the right. When the user hits an asteroid, the score will appear on the screen along with a Play Again button.
+The moon is an icosahedron that is placed slightly lower than the x-axis so that the camera only captures half the object when zoomed out completely.
 
-![wireframes](images/wireframe.png)
+#### Asteroids
 
-### Architecture and Technologies
+The asteroids surrounding the moon are also icosahedrons that are assigned a random size and distance. They are placed evenly around the moon. In addition to rotating with the moon along the z-axis, they rotate individually along the y-axis.
 
-This project will be implemented with the following technologies:
+```js
+const spaceMesh = new THREE.Object3D();
 
-- Vanilla JavaScript for overall structure and game logic
-- `Three.js` with `WebGL` for DOM manipulation and rendering
+const angleDistance = (Math.PI * 2) / numAsteroids;
+for (let i = 0; i < numAsteroids; i++) {
+  const angle = angleDistance * i;
+  const distance = 325 + (Math.random() * 300);
+  const newAsteroid = new Asteroid();
+  newAsteroid.sphere.position.x = Math.cos(angle) * distance;
+  newAsteroid.sphere.position.y = Math.sin(angle) * distance;
+  newAsteroid.sphere.position.z = Math.random() * 100;
 
+  const size = Math.random();
+  newAsteroid.sphere.scale.set(size, size, size);
+  spaceMesh.add(newAsteroid.sphere);
+}
+```
 
-### Implementation Timeline
+#### Rocket
 
-**Weekend**: Learn about `Three.js`.
+The rocket follows the user's mouse movement and is made up of 9 different objects: 1 cone, 3 cylinders, and 5 boxes. The object spins along the x-axis.
 
-**Day 1**: Add the nav bar. Create the scene and lighting.
+<p align="center" height="100%" width="auto">
+  <img src="media/rocket.png" alt="rocket">
+</p>
 
-**Day 2**: Create rocket and asteroid objects and add them to the scene. Animate the scene.
+### Future Directions
+* I plan on animating smoke puffs coming out from the rear of the rocket. Please see this [example][example].
 
-**Day 3**: Add responsiveness to mouse movement and start on game logic.  
+[example]: https://codepen.io/murdoc/pen/aOPaqZ
 
-**Day 4**: Continue developing game logic. Create a modal with instructions.
+* I also plan on animating rocket and asteroid collisions.

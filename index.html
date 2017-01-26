@@ -15,11 +15,11 @@
     <nav>
       <h1>Orbit</h1>
       <div id="sliders">
-        <label for="num-asteroids">Number of Asteroids</label><br />
-        <input id="num-asteroids" type="range" min="5" max="150" value="15"/>
+        <label for="num-asteroids">Asteroid Count</label><br />
+        <input id="num-asteroids" type="range" min="5" max="150" value="30"/>
         <br /><br />
-        <label for="camera-z">Zoom</label><br />
-        <input id="camera-z" type="range" min="200" max="500" value="300"/>
+        <label for="camera-zoom">Zoom</label><br />
+        <input id="camera-zoom" type="range" min="200" max="500" value="400"/>
         <br /><br />
         <label for="scene-rotation-speed">Rocket Speed</label><br />
         <input id="scene-rotation-speed" type="range" min=".005" max=".05" value=".007" step=".001">
@@ -34,11 +34,16 @@
         <input id="asteroid-color-red" type="range" min="0" max="255" value="189">
         <input id="asteroid-color-green" type="range" min="0" max="255" value="160">
         <input id="asteroid-color-blue" type="range" min="0" max="255" value="203">
+        <br /><br />
+        <label for="moon-color">Moon Color</label><br />
+        <input id="moon-color-red" type="range" min="0" max="255" value="255">
+        <input id="moon-color-green" type="range" min="0" max="255" value="255">
+        <input id="moon-color-blue" type="range" min="0" max="255" value="255">
+        <p id="reset">Reset</p>
       </div>
       <div id="icons">
-        <a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
-        <a href="https://www.linkedin.com/in/chloe-chou"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
         <a href="https://github.com/chloejchou/orbit"><i class="fa fa-github" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/chloe-chou"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
       </div>
     </nav>
     <div id="sky"></div>
