@@ -2,7 +2,7 @@
 
 [Orbit Live][orbit]
 
-[orbit]: www.chloejchou.github.io/orbit
+[orbit]: https://chloejchou.github.io/orbit/
 
 Orbit follows the journey of a rocket that is circling the moon. The user is able to toggle the following environmental factors:
 
