@@ -46,7 +46,6 @@ const moon = () => {
   const geometry = new THREE.IcosahedronGeometry(300, 3);
   const material = new THREE.MeshPhongMaterial({
     color: `rgb(${moonRed}, ${moonGreen}, ${moonBlue})`,
-    opacity: .9,
     shading: THREE.FlatShading
   });
   const sphere = new THREE.Mesh(geometry, material);
@@ -343,12 +342,13 @@ document.addEventListener('DOMContentLoaded', () => {
     speed = parseFloat(event.target.value);
   });
 
-  $("#rocket-rotation-speed").on('change', event => {
-    rocketRotationSpeed = parseFloat(event.target.value);
+
+  $("#background-img").on('change', event => {
+    $("#sky").css("background-image", `url('./backgrounds/background${event.target.value}.jpg')`);
   });
 
-  $("#pov").on('change', event => {
-    if (event.target.value === "1") {
+  $("#pov-switch").on('click', event => {
+    if ($("#pov-switch").is(":checked")) {
       camera.position.z = 0;
       camera.position.y = 400;
       camera.rotation.x = (Math.PI / -2);
@@ -419,14 +419,14 @@ document.addEventListener('DOMContentLoaded', () => {
     speed = .007;
     $("#scene-rotation-speed").val(".007");
 
-    // rocket rotation
-    rocketRotationSpeed = .015;
-    $("#rocket-rotation-speed").val(".015");
+    // background
+    $("#sky").css("background-image", "url('./backgrounds/background1.jpg')");
+    $("#background-img").val("1");
 
     // POV
     camera.position.y = 0;
     camera.rotation.x = 0;
-    $("pov").val("0");
+    $("#pov-switch").prop('checked', false);
 
     // asteroid color
     asteroidRed = "189";

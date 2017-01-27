@@ -26,7 +26,7 @@ body {
   position: absolute;
   left: 70px;
   height: 100%;
-  background-image: url("https://source.unsplash.com/aI1tDC8PaLM");
+  background-image: url("../backgrounds/background1.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -44,9 +44,6 @@ nav {
   text-align: center;
 }
 
-#sliders input {
-}
-
 label {
   font-family: 'Alegreya Sans SC', sans-serif;
   font-size: 100%;
@@ -57,10 +54,8 @@ h1 {
   font-size: 200%;
   text-align: center;
   font-family: 'Pacifico';
-  padding: 10px 0;
+  padding-top: 10px;
 }
-
-
 
 #icons {
   position: absolute;
@@ -68,15 +63,15 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 15px;
+  bottom: 10px;
 }
 
 #icons a {
-  font-size: 230%;
+  font-size: 150%;
 }
 
 #icons a:first-of-type {
-  padding-right: 30px;
+  padding-right: 25px;
 }
 
 #icons a:hover {
@@ -92,6 +87,67 @@ h1 {
 #reset:hover {
   cursor: pointer;
   color: #966fa9;
+}
+
+/* for the pov toggle switch */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 47px;
+  height: 26.5px;
+  margin-top: 5px;
+}
+
+.switch input {
+  display:none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  /*background-color: #2196F3;*/
+  background-color: #7a548c;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18.5px);
+  -ms-transform: translateX(18.5px);
+  transform: translateX(18.5px);
+}
+
+.slider.round {
+  border-radius: 27px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 /* bootstrap for range inputs */
