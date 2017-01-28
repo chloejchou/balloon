@@ -23,7 +23,7 @@ body {
 }
 
 #sky {
-  position: absolute;
+  position: fixed;
   left: 70px;
   height: 100%;
   background-image: url("../backgrounds/background1.jpg");
@@ -42,6 +42,8 @@ nav {
 
 #sliders {
   text-align: center;
+  background-color: black;
+  box-shadow: 3px 0px 3px #000000;
 }
 
 label {
@@ -58,12 +60,13 @@ h1 {
 }
 
 #icons {
-  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 10px;
+  background-color: black;
+  box-shadow: 3px 0px 3px #000000;
+  padding-bottom: 15px;
 }
 
 #icons a {
@@ -81,7 +84,8 @@ h1 {
 #reset {
   font-family: 'Pacifico';
   font-size: 150%;
-  margin: 10px 0;
+  padding: 10px 0;
+  margin: 0px;
 }
 
 #reset:hover {

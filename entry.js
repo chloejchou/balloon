@@ -19,6 +19,14 @@ const setupScene = () => {
 
   const root = document.getElementById("sky");
   root.appendChild(renderer.domElement);
+
+  window.addEventListener('resize', handleResize, false);
+};
+
+const handleResize = () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 };
 
 
