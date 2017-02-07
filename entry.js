@@ -267,6 +267,52 @@ const addExhaust = () => {
   });
 };
 
+// MODAL
+// ------------------------------------------------------------------
+
+let modalScene, modalCamera, modalRenderer;
+
+const setupModalScene = () => {
+  modalScene = new THREE.Scene();
+
+  modalCamera = new THREE.PerspectiveCamera(70, 1, 1, 10000);
+  modalCamera.position.z = 50;
+  modalCamera.position.x = 0;
+  modalCamera.position.y = 0;
+
+  modalRenderer = new THREE.WebGLRenderer({ alpha: true });
+  modalRenderer.setSize(150, 150);
+
+  const modalRoot = document.getElementById("modal-asteroid");
+  modalRoot.appendChild(modalRenderer.domElement);
+};
+
+let modalLight;
+
+const setupModalLights = () => {
+  modalLight = new THREE.DirectionalLight(0xffffff, .9);
+  modalLight.position.set(100, 100, 100);
+
+  modalScene.add(modalLight);
+};
+
+let modalSphere;
+
+const addAsteroid = () => {
+  const geometry = new THREE.IcosahedronGeometry(20, 1);
+  const material = new THREE.MeshPhongMaterial({
+    color: `rgb(${asteroidRed}, ${asteroidGreen}, ${asteroidBlue})`,
+    opacity: .95,
+    shading: THREE.FlatShading
+  });
+
+  modalSphere = new THREE.Mesh(geometry, material);
+  modalScene.add(modalSphere);
+  modalSphere.position.x = 0;
+  modalSphere.position.y = 0;
+  modalSphere.position.z = 0;
+};
+
 
 // HELPER METHODS
 // ------------------------------------------------------------------
@@ -306,9 +352,25 @@ const loop = () => {
   requestAnimationFrame(loop);
 };
 
+const modalLoop = () => {
+  modalRenderer.render(modalScene, modalCamera);
+  modalSphere.rotation.y += .01;
+  modalSphere.rotation.x += .01;
+
+  requestAnimationFrame(modalLoop);
+};
+
 
 // RENDERING
 // ------------------------------------------------------------------
+
+const initializeModal = () => {
+  setupModalScene();
+  setupModalLights();
+  addAsteroid();
+
+  modalLoop();
+};
 
 const initialize = () => {
   setupScene();
@@ -316,6 +378,7 @@ const initialize = () => {
   addMoon();
   addSpace();
   addRocket();
+
 
   // rocket follows mouse
   document.addEventListener('mousemove', event => {
@@ -329,6 +392,21 @@ const initialize = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   initialize();
+  initializeModal();
+
+  // MODAL
+  // ------------------------------------------------------------------
+  const modal = $(".modal");
+  const span = $(".close");
+  span.on('click', event => {
+    modal.css("display", "none");
+  });
+
+  $(window).on('click', event => {
+    if (event.target === modal[0]) {
+      modal.css("display", "none");
+    }
+  });
 
   // EVENTS
   // ------------------------------------------------------------------

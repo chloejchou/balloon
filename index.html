@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Orbit</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico|Alegreya+Sans+SC:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Alegreya+Sans+SC:300|Open+Sans" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link href="./css/style.css" rel="stylesheet"/>
     <!-- Downloaded the minified library and stored in file three.js -->
@@ -12,6 +12,18 @@
     <script type="text/javascript" src="./entry.js"></script>
   </head>
   <body>
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>Orbit</h1>
+        <p>
+          Welcome to Orbit, a 3D simulation of a rocket circling the moon.
+          This project aims to allow the user to personalize objects created with Three.js.
+          Play with the sidebar and watch the scene change before your eyes!
+        </p>
+        <div id="modal-asteroid"></div>
+      </div>
+    </div>
     <nav>
       <h1>Orbit</h1>
       <div id="sliders">
